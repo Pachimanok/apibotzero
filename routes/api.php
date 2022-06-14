@@ -26,6 +26,8 @@ Route::get('/imprimirVacio','App\Http\Controllers\crearpdfController@vacio');
 /* Envio de Emails */
 
 Route::get('/mailPrueba','App\Http\Controllers\emailController@prueba');  
+Route::get('/mailStatus','App\Http\Controllers\emailController@cambiaStatus');  
+
 
 Route::post('/imprimir/create','App\Http\Controllers\crearpdfControllerPDF@store'); //mostrar todos
 Route::get('/imprimirIns','App\Http\Controllers\imprimirPDF@store'); //mostrar todos

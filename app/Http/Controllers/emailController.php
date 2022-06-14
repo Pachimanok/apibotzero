@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CargaConProblemas;
 use App\Mail\correoDePrueba;
+use App\Models\logapi;
+use App\Models\statu;
+use Carbon\Carbon;
+use DateTimeZone;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Mail;
 
 class emailController extends Controller
@@ -15,9 +22,42 @@ class emailController extends Controller
      */
     public function prueba()
     {
+        return $_GET['description'];
+
         Mail::to('priopelliza@gmail.com')->send(new correoDePrueba);
 
         return 'mensaje enviado';
+    }
+    public function cambiaStatus()
+    {
+       
+        $logapi = new logapi();
+        $logapi->user = $_GET['user'];
+        $logapi->detalle = 'Satatus con Problema';
+        $logapi->save();
+        $date = Carbon::now('-03:00');
+        
+        $datos = [
+
+            'cntr' => $_GET['cntr'],
+            'statusGeneral' => $_GET['statusGeneral'],
+            'description' =>  $_GET['description'],
+            'user' => $_GET['user'],
+            'empresa' => $_GET['empresa'],
+            'booking' => $_GET['booking'],
+            'date' => $date
+            
+        ];
+
+        Mail::to('priopelliza@gmail.com')->send(new CargaConProblemas($datos)); 
+
+        return '{
+            "success": true,
+            "payload": {
+              /* Application-specific data would go here. */
+            }
+          }'; 
+        
     }
 
     /**
