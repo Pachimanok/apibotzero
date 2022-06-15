@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CargaConProblemas extends Mailable
+class IngresadoStacking extends Mailable
 {
     use Queueable, SerializesModels;
     public $subject;
@@ -21,8 +21,10 @@ class CargaConProblemas extends Mailable
     public function __construct($datos)
     {
         $this->datos = $datos;
-        $this->subject = '[ '.$datos['cntr'].' ]'. 'Carga con Problemas.';
+        $this->subject = '[ '.$datos['cntr'].' ]'. 'Carga Ingresada a Sacking.';
+
     }
+
     /**
      * Build the message.
      *
@@ -30,6 +32,6 @@ class CargaConProblemas extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.CargaConProblemas');
+        return $this->view('mails.CargaIngresadaStacking');
     }
 }

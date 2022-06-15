@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CamnioStatus;
 use App\Mail\CargaConProblemas;
 use App\Mail\correoDePrueba;
+use App\Mail\IngresadoStacking;
+use App\Models\empresa;
 use App\Models\logapi;
 use App\Models\statu;
 use Carbon\Carbon;
@@ -11,6 +14,7 @@ use DateTimeZone;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class emailController extends Controller
@@ -28,35 +32,86 @@ class emailController extends Controller
 
         return 'mensaje enviado';
     }
-    public function cambiaStatus()
+    public function cambiaStatus($cntr,$empresa,$booking,$user,$tipo)
     {
-       
+        
         $logapi = new logapi();
-        $logapi->user = $_GET['user'];
+        $logapi->user = $user;
         $logapi->detalle = 'Satatus con Problema';
         $logapi->save();
         $date = Carbon::now('-03:00');
         
-        $datos = [
+        
+        if($tipo == 'problema'){
 
-            'cntr' => $_GET['cntr'],
-            'statusGeneral' => $_GET['statusGeneral'],
-            'description' =>  $_GET['description'],
-            'user' => $_GET['user'],
-            'empresa' => $_GET['empresa'],
-            'booking' => $_GET['booking'],
-            'date' => $date
+            $qd = DB::table('status')->select('status')->where('cntr_number','=',$cntr)->latest('id')->first();
+            $description= $qd->status;
+            $datos = [
+                'cntr' => $cntr,
+                'description' =>  $description,
+                'user' => $user,
+                'empresa' => $empresa,
+                'booking' => $booking,
+                'date' => $date
+            ];
+
             
-        ];
+            $qempresa = DB::table('carga')->select('empresa')->where('booking','=',$booking)->get();
+            $empresa = $qempresa[0]->empresa;
+            $qmail = DB::table('empresas')->where('razon_social','=',$empresa)->select('mail_logistic')->get();
+            $mail = $qmail[0]->mail_logistic;
 
-        Mail::to('priopelliza@gmail.com')->send(new CargaConProblemas($datos)); 
+            Mail::to($mail)->send(new CargaConProblemas($datos)); 
+            return 'ok';
 
-        return '{
-            "success": true,
-            "payload": {
-              /* Application-specific data would go here. */
-            }
-          }'; 
+        }elseif($tipo == 'stacking'){
+            $qd = DB::table('status')->select('status')->where('cntr_number','=',$cntr)->latest('id')->first();
+            $description= $qd->status;
+            $datos = [
+                'cntr' => $cntr,
+                'description' =>  $description,
+                'user' => $user,
+                'empresa' => $empresa,
+                'booking' => $booking,
+                'date' => $date
+            ];
+
+            $qempresa = DB::table('carga')->select('empresa')->where('booking','=',$booking)->get();
+            $empresa = $qempresa[0]->empresa;
+            $qmail = DB::table('empresas')->where('razon_social','=',$empresa)->select('mail_logistic')->get();
+            $mail = $qmail[0]->mail_logistic;
+
+           Mail::to($mail)->send(new IngresadoStacking($datos)); 
+           return 'ok';
+
+        }else{
+
+           
+            $qd = DB::table('status')->select('status','main_status')->where('cntr_number','=',$cntr)->latest('id')->first();
+            $description= $qd->status;
+            $status = $qd->main_status;
+
+            $datos = [
+                'cntr' => $cntr,
+                'description' =>  $description,
+                'user' => $user,
+                'empresa' => $empresa,
+                'booking' => $booking,
+                'date' => $date,
+                'status' => $status
+            ];
+
+            $qempresa = DB::table('carga')->select('empresa')->where('booking','=',$booking)->get();
+            $empresa = $qempresa[0]->empresa;
+            $qmail = DB::table('empresas')->where('razon_social','=',$empresa)->select('mail_logistic')->get();
+            $mail = $qmail[0]->mail_logistic;
+
+            Mail::to($mail)->send(new CamnioStatus($datos)); 
+            return 'ok';
+
+        }
+
+        return 'ok'; 
         
     }
 
