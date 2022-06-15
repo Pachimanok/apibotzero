@@ -37,7 +37,7 @@ class emailController extends Controller
         
         $logapi = new logapi();
         $logapi->user = $user;
-        $logapi->detalle = 'Satatus con Problema';
+        $logapi->detalle = 'Envio Mail_'.$tipo;
         $logapi->save();
         $date = Carbon::now('-03:00');
         
@@ -65,8 +65,11 @@ class emailController extends Controller
             return 'ok';
 
         }elseif($tipo == 'stacking'){
-            $qd = DB::table('status')->select('status')->where('cntr_number','=',$cntr)->latest('id')->first();
+
+            $qd = DB::table('status')->select('status','main_status')->where('cntr_number','=',$cntr)->latest('id')->first();
             $description= $qd->status;
+            $status = $qd->main_status;
+
             $datos = [
                 'cntr' => $cntr,
                 'description' =>  $description,
@@ -110,8 +113,6 @@ class emailController extends Controller
             return 'ok';
 
         }
-
-        return 'ok'; 
         
     }
 

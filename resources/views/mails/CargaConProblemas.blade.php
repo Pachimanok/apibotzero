@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
 
 <head>
@@ -138,12 +137,13 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <table align="center" border="0" cellpadding="0" cellspacing="0"
-                                        class="row-content" role="presentation"
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content"
+                                        role="presentation"
                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #FFFFFF; color: #333; width: 650px;"
                                         width="650">
                                         <tbody>
                                             <tr>
+                                                <td></td>
                                                 <td class="column column-1"
                                                     style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 25px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
                                                     width="50%">
@@ -155,39 +155,15 @@
                                                             <td
                                                                 style="padding-top:30px;width:100%;padding-right:0px;padding-left:0px;padding-bottom:25px;">
                                                                 <div style="line-height:10px"><img alt="Image"
-                                                                        class="fullMobileWidth big" src="images/Logo.png"
-                                                                        style="display: block; height: auto; border: 0; width: 195px; max-width: 100%;"
+                                                                        class="fullMobileWidth big"
+                                                                        src="https://botzero.ar/public/image/logoBotZero.svg"
+                                                                        style="display: block; height: auto; border: 0; width: 240px; max-width: 100%;margin: auto;"
                                                                         title="Image" width="195" /></div>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                 </td>
-                                                <td class="column column-2"
-                                                    style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-right: 25px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-                                                    width="50%">
-                                                    <table border="0" cellpadding="0" cellspacing="0"
-                                                        class="button_block" role="presentation"
-                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-                                                        width="100%">
-                                                        <tr>
-                                                            <td
-                                                                style="padding-bottom:35px;padding-left:10px;padding-top:35px;text-align:right;">
-                                                                <div align="right">
-                                                                    <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="#" style="height:38px;width:100px;v-text-anchor:middle;" arcsize="37%" stroke="false" fillcolor="#D4E9F9"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#052d3d; font-family:Tahoma, Verdana, sans-serif; font-size:14px"><![endif]--><a
-                                                                        href="#"
-                                                                        style="text-decoration:none;display:inline-block;color:#052d3d;background-color:#D4E9F9;border-radius:14px;width:auto;border-top:1px solid #D4E9F9;font-weight:undefined;border-right:1px solid #D4E9F9;border-bottom:1px solid #D4E9F9;border-left:1px solid #D4E9F9;padding-top:3px;padding-bottom:3px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"
-                                                                        target="_blank"><span
-                                                                            style="padding-left:15px;padding-right:15px;font-size:14px;display:inline-block;letter-spacing:normal;"><span
-                                                                                style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><span
-                                                                                    data-mce-style="font-size: 14px; line-height: 28px;"
-                                                                                    style="font-size: 14px; line-height: 28px;">My
-                                                                                    account</span></span></span></a>
-                                                                    <!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -202,15 +178,15 @@
                                 <td>
                                     <table align="center" border="0" cellpadding="0" cellspacing="0"
                                         class="row-content stack" role="presentation"
-                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #D6E7F0; background-image: url('images/bg_cart_2.png'); background-position: top center; background-repeat: no-repeat; color: #000000; width: 650px;"
+                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f0d6d6; background-image: url('images/bg_cart_2.png'); background-position: top center; background-repeat: no-repeat; color: #000000; width: 650px;"
                                         width="650">
                                         <tbody>
                                             <tr>
                                                 <td class="column column-1"
                                                     style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 55px; padding-bottom: 60px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
                                                     width="100%">
-                                                    <table border="0" cellpadding="0" cellspacing="0"
-                                                        class="text_block" role="presentation"
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="text_block"
+                                                        role="presentation"
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
                                                         width="100%">
                                                         <tr>
@@ -222,16 +198,16 @@
                                                                         <p
                                                                             style="margin: 0; font-size: 14px; text-align: center;">
                                                                             <span style="font-size:38px;"><strong><span
-                                                                                        style="font-size:38px;">CARGA
-                                                                                        CON PROBLEMAS </strong></span>
+                                                                                        style="font-size:38px; color:#f44336;">CARGA
+                                                                                        CON PROBLEMAS</strong></span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <table border="0" cellpadding="0" cellspacing="0"
-                                                        class="text_block" role="presentation"
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="text_block"
+                                                        role="presentation"
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
                                                         width="100%">
                                                         <tr>
@@ -246,7 +222,7 @@
                                                                                         style="font-size:22px;">Carga
                                                                                         {{ $datos['cntr'] }} para el
                                                                                         {{ $datos['booking'] }}
-                                                                                        </span></strong></span>
+                                                                                    </span></strong></span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -340,16 +316,23 @@
                                                                             <div style="font-family: sans-serif">
                                                                                 <div class="txtTinyMce-wrapper"
                                                                                     style="font-size: 12px; font-family: Lato, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 14.399999999999999px; color: #052d3d; line-height: 1.2;">
-                                                                                    <p
-                                                                                        style="margin: 0; font-size: 12px; text-align: center;">
-                                                                                        <span
-                                                                                            style="font-size:34px;"><span
-                                                                                                style="color:#fc7318;font-size:34px;"><strong><span
-                                                                                                        style="font-size:34px;">{{ $datos['cntr']}} </span></strong></span><span
-                                                                                                style="font-size:34px;">| {{$datos['booking']}}
-                                                                                                /
-                                                                                                Referencia</span></span>
+                                                                                    <p style="margin: 0; font-size: 12px; text-align: center;">
+                                                                                        <span style="font-size:34px;">
+                                                                                            <span style="color:#f44336;font-size:34px;">
+                                                                                                <strong>
+                                                                                                    <span style="font-size:34px;">
+                                                                                                        {{ $datos['cntr'] }}
+                                                                                                    </span>
+                                                                                                </strong>
+                                                                                            </span>
+                                                                                        </p>
+                                                                                        <p style="margin: 0; font-size: 12px; text-align: center;">
+                                                                                            <span style="font-size:20px; color: gray; text-align: center;">
+                                                                                                {{$datos['booking']}}
+                                                                                            </span>
+                                                                                        </span>
                                                                                     </p>
+                                                                                    
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -366,15 +349,27 @@
                                                                                 <div class="txtTinyMce-wrapper"
                                                                                     style="font-size: 12px; font-family: Lato, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 18px; color: #787878; line-height: 1.5;">
                                                                                     <p
-                                                                                        style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
+                                                                                        style="margin: 2%; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
                                                                                         <span style="font-size:18px;">
-                                                                                            {{ $datos['description']}}</span><br /><span
-                                                                                            style="font-size:18px;">
-                                                                                            Status Informado por: <span
-                                                                                                style="color:#2190e3;font-size:18px;"><strong>{{ $datos['user']}}</strong></span>
-
-                                                                                            <br /><strong>Created at: {{ $datos['date']}}
-                                                                                              </strong></span>
+                                                                                            {{ $datos['description']}}
+                                                                                        </span>
+                                                                                        <br/>
+                                                                                    </p>
+                                                                                    <p
+                                                                                    style="margin: 2%; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
+                                                                                        <span
+                                                                                            style="font-size:15px;">
+                                                                                            Status Informado por: <br>
+                                                                                            <span
+                                                                                                style="color:#2190e3;font-size:18px;">
+                                                                                                <strong>
+                                                                                                    {{ $datos['user']}}
+                                                                                                </strong>
+                                                                                            </span>
+                                                                                            <br/>
+                                                                                            <strong style="font-size:10px;">Created at: {{
+                                                                                                $datos['date']}}
+                                                                                            </strong></span>
                                                                                     </p>
                                                                                 </div>
                                                                             </div>
@@ -399,7 +394,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-10"
+                    {{-- <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-10"
                         role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                         <tbody>
                             <tr>
@@ -443,7 +438,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> --}}
                     <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-14"
                         role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
                         <tbody>
@@ -475,8 +470,7 @@
                                                                             <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
                                                                             <!--[if !vml]><!-->
                                                                             <table cellpadding="0" cellspacing="0"
-                                                                                class="icons-inner"
-                                                                                role="presentation"
+                                                                                class="icons-inner" role="presentation"
                                                                                 style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;">
                                                                                 <!--<![endif]-->
                                                                                 <tr>
@@ -538,8 +532,7 @@
                                                                             <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
                                                                             <!--[if !vml]><!-->
                                                                             <table cellpadding="0" cellspacing="0"
-                                                                                class="icons-inner"
-                                                                                role="presentation"
+                                                                                class="icons-inner" role="presentation"
                                                                                 style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;">
                                                                                 <!--<![endif]-->
                                                                                 <tr>
@@ -550,8 +543,7 @@
                                                                                             target="_blank"><img
                                                                                                 align="center"
                                                                                                 alt="Designed with BEE"
-                                                                                                class="icon"
-                                                                                                height="32"
+                                                                                                class="icon" height="32"
                                                                                                 src="images/bee.png"
                                                                                                 style="display: block; height: auto; margin: 0 auto; border: 0;"
                                                                                                 width="34" /></a>
