@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/imprimirCarga','App\Http\Controllers\crearpdfController@carga'); 
 Route::get('/imprimirVacio','App\Http\Controllers\crearpdfController@vacio');  
+Route::get('/imprimirEviarInstrucivo/{cntr}','App\Http\Controllers\crearpdfController@cargaPorMail');  
+
 
 /* Envio de Emails */
 

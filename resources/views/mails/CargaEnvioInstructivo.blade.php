@@ -137,8 +137,8 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content"
-                                        role="presentation"
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0"
+                                        class="row-content" role="presentation"
                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #FFFFFF; color: #333; width: 650px;"
                                         width="650">
                                         <tbody>
@@ -185,8 +185,8 @@
                                                 <td class="column column-1"
                                                     style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 55px; padding-bottom: 60px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
                                                     width="100%">
-                                                    <table border="0" cellpadding="0" cellspacing="0" class="text_block"
-                                                        role="presentation"
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                        class="text_block" role="presentation"
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
                                                         width="100%">
                                                         <tr>
@@ -197,18 +197,24 @@
                                                                         style="font-size: 12px; font-family: Lato, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 14.399999999999999px; color: #052d3d; line-height: 1.2;">
                                                                         <p
                                                                             style="margin: 0; font-size: 14px; text-align: center;">
-                                                                            <span style="font-size:38px;"><strong><span
-                                                                                        style="font-size:38px; color:#4caf50;">CARGA
-                                                                                        {{
-                                                                                        $datos['status']}} </strong></span>
+                                                                            <span style="font-size:26px;"><strong><span
+                                                                                        style="font-size:38px; color:#4caf50;">NUEVO
+                                                                                        INSTRUCTIVO DE CARGA
+                                                                                        -
+                                                                                        ID:{{ $datos['id_asign'] }} </strong><br>
+                                                                                COMMODITY:
+                                                                                {{ $datos['commodity'] }}</span>
+
+
+
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <table border="0" cellpadding="0" cellspacing="0" class="text_block"
-                                                        role="presentation"
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                        class="text_block" role="presentation"
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
                                                         width="100%">
                                                         <tr>
@@ -221,9 +227,11 @@
                                                                             style="margin: 0; font-size: 14px; text-align: center;">
                                                                             <span style="font-size:22px;"><strong><span
                                                                                         style="font-size:22px;">Carga
-                                                                                        {{ $datos['cntr'] }} para el
-                                                                                        {{ $datos['booking'] }}
+                                                                                        {{ $datos['commodity'] }} en
+                                                                                        {{ $datos['cntr_type'] }} para
+                                                                                        {{ $datos['load_date'] }}
                                                                                     </span></strong></span>
+
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -317,23 +325,28 @@
                                                                             <div style="font-family: sans-serif">
                                                                                 <div class="txtTinyMce-wrapper"
                                                                                     style="font-size: 12px; font-family: Lato, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 14.399999999999999px; color: #052d3d; line-height: 1.2;">
-                                                                                    <p style="margin: 0; font-size: 12px; text-align: center;">
+                                                                                    <p
+                                                                                        style="margin: 0; font-size: 12px; text-align: center;">
                                                                                         <span style="font-size:34px;">
-                                                                                            <span style="color:#4caf50;font-size:34px;">
+                                                                                            <span
+                                                                                                style="color:#4caf50;font-size:34px;">
                                                                                                 <strong>
-                                                                                                    <spanstyle="font-size:34px;">
-                                                                                                        {{ $datos['cntr'] }}
+                                                                                                    <span
+                                                                                                        style="font-size:34px;">
+                                                                                                        {{ $datos['cntr_number'] }}
                                                                                                     </span>
                                                                                                 </strong>
                                                                                             </span>
-                                                                                        </p>
-                                                                                        <p style="margin: 0; font-size: 12px; text-align: center;">
-                                                                                            <span style="font-size:20px; color: gray; text-align: center;">
-                                                                                                {{$datos['booking']}}
-                                                                                            </span>
+                                                                                    </p>
+                                                                                    <p
+                                                                                        style="margin: 0; font-size: 12px; text-align: center;">
+                                                                                        <span
+                                                                                            style="font-size:20px; color: gray; text-align: center;">
+                                                                                            {{ $datos['booking'] }}
+                                                                                        </span>
                                                                                         </span>
                                                                                     </p>
-                                                                                    
+
                                                                                 </div>
                                                                             </div>
                                                                         </td>
@@ -352,24 +365,45 @@
                                                                                     <p
                                                                                         style="margin: 2%; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
                                                                                         <span style="font-size:18px;">
-                                                                                            {{ $datos['description']}}
+                                                                                            LUGAR DE CARGA:
+                                                                                            {{ $datos['load_place'] }}
+
                                                                                         </span>
-                                                                                        <br/>
+                                                                                        <br />
                                                                                     </p>
                                                                                     <p
-                                                                                    style="margin: 2%; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
-                                                                                        <span
-                                                                                            style="font-size:15px;">
+                                                                                        style="margin: 2%; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
+                                                                                        <span style="font-size:18px;">
+                                                                                            DIA DE
+                                                                                            CARGA:{{ $datos['load_date'] }}
+
+                                                                                        </span>
+                                                                                        <br />
+                                                                                    </p>
+                                                                                    <p
+                                                                                        style="margin: 2%; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
+                                                                                        <span style="font-size:18px;">
+                                                                                            SHIPPER:{{ $datos['shipper'] }}
+
+                                                                                        </span>
+                                                                                        <br />
+                                                                                    </p>
+
+                                                                                    <p
+                                                                                        style="margin: 2%; font-size: 14px; text-align: center; mso-line-height-alt: 27px;">
+                                                                                        <span style="font-size:15px;">
                                                                                             Status Informado por: <br>
-                                                                                            <span
+                                                                                            {{-- <span
                                                                                                 style="color:#2190e3;font-size:18px;">
                                                                                                 <strong>
-                                                                                                    {{ $datos['user']}}
+                                                                                                    {{ $datos['cntr_number'] }}
                                                                                                 </strong>
-                                                                                            </span>
-                                                                                            <br/>
-                                                                                            <strong style="font-size:10px;">Created at: {{
-                                                                                                $datos['date']}}
+                                                                                            </span> --}}
+                                                                                            <br />
+                                                                                            <strong
+                                                                                                style="font-size:10px;">Created
+                                                                                                at:
+                                                                                                {{ $datos['date'] }}
                                                                                             </strong></span>
                                                                                     </p>
                                                                                 </div>
@@ -471,7 +505,8 @@
                                                                             <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
                                                                             <!--[if !vml]><!-->
                                                                             <table cellpadding="0" cellspacing="0"
-                                                                                class="icons-inner" role="presentation"
+                                                                                class="icons-inner"
+                                                                                role="presentation"
                                                                                 style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;">
                                                                                 <!--<![endif]-->
                                                                                 <tr>
@@ -533,7 +568,8 @@
                                                                             <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
                                                                             <!--[if !vml]><!-->
                                                                             <table cellpadding="0" cellspacing="0"
-                                                                                class="icons-inner" role="presentation"
+                                                                                class="icons-inner"
+                                                                                role="presentation"
                                                                                 style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;">
                                                                                 <!--<![endif]-->
                                                                                 <tr>
@@ -544,7 +580,8 @@
                                                                                             target="_blank"><img
                                                                                                 align="center"
                                                                                                 alt="Designed with BEE"
-                                                                                                class="icon" height="32"
+                                                                                                class="icon"
+                                                                                                height="32"
                                                                                                 src="images/bee.png"
                                                                                                 style="display: block; height: auto; margin: 0 auto; border: 0;"
                                                                                                 width="34" /></a>
