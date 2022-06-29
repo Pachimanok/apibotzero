@@ -7,24 +7,23 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CamnioStatus extends Mailable
+class cargaAsignada extends Mailable
 {
     use Queueable, SerializesModels;
     public $subject;
     public $datos;
     public $date;
 
-
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($datos)
+    public function __construct($datos, $date)
     {
         $this->datos = $datos;
-
-        $this->subject = '[ '.$datos['cntr'].' ]'. 'Cambio su Status a ' . $datos['status'];
+        $this->date  = $date;
+        $this->subject = '[ '.$datos['cntr_number'].' ]'. 'Asignacion de Unidad.';
     }
 
     /**
@@ -34,6 +33,6 @@ class CamnioStatus extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.CargaCambiaStatus');
+        return $this->view('mails.CargaAsignada');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\CamnioStatus;
+use App\Mail\cargaAsignada;
+use App\Mail\cargaAsignadaEditada;
 use App\Mail\CargaConProblemas;
 use App\Mail\correoDePrueba;
 use App\Mail\IngresadoStacking;
@@ -32,6 +34,85 @@ class emailController extends Controller
 
         return 'mensaje enviado';
     }
+    public function cargaAsignada($transport,$transport_agent,$driver,$user,$empresa,$truck,$truck_semi,$cntr_number,$id,$booking){
+
+
+        
+        $date = Carbon::now('-03:00');
+        $to = DB::table('users')->select('email')->where('username', '=', $user)->get();
+
+        $data = [
+            'driver'=>$driver, 
+            'cntr_number'=>$cntr_number, 
+            'booking'=>$booking, 
+            'truck'=>$truck, 
+            'truck_semi'=>$truck_semi, 
+            'transport'=>$transport, 
+            'transport_agent'=>$transport_agent,
+            'user'=>$user,
+            'company'=>$empresa,
+        ];
+        
+        
+        $id = DB::table('asign')->select('id')->where('cntr_number','=',$cntr_number)->get();
+        $qid = $id->count();
+        
+        if($qid == 0){
+           
+            $logapi = new logapi();
+            $logapi->user = $user;
+            $logapi->detalle = 'AsiganaCarga';
+            $logapi->save();
+
+            $query = DB::table('asign')->insert($data);
+            
+            if( $query == 1){
+
+            Mail::to('priopelliza@gmail.com')->send(new cargaAsignada($data,$date)); 
+            
+            return 'ok';
+            
+            }else{
+                
+                return 'error';
+            }
+
+        }else{
+
+        $logapi = new logapi();
+        $logapi->user = $user;
+        $logapi->detalle = 'EditaAsiganacionCarga';
+        $logapi->save();
+        
+        $data = [
+            'driver'=>$driver, 
+            'cntr_number'=>$cntr_number, 
+            'booking'=>$booking, 
+            'truck'=>$truck, 
+            'truck_semi'=>$truck_semi, 
+            'transport'=>$transport, 
+            'transport_agent'=>$transport_agent,
+            'user'=>$user,
+            'company'=>$empresa,
+        ];
+        
+           
+            $actuliza = DB::table('asign')->where('id', $id[0]->id)->update($data);
+           
+            if($actuliza == 0 |$actuliza == 1 ){
+
+                Mail::to('priopelliza@gmail.com')->send(new cargaAsignadaEditada($data, $date)); 
+                return 'ok'; 
+
+            }else{
+
+                return 'error'; 
+
+            }
+            
+        }
+    }
+
     public function cambiaStatus($cntr,$empresa,$booking,$user,$tipo)
     {
         
