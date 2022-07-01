@@ -182,7 +182,7 @@ class crearpdfController extends Controller
         $query = DB::table('asign')
         ->select('asign.cntr_number', 'asign.booking', 'asign.file_instruction','transporte.contacto_logistica_celular')
         ->join('transporte', 'transporte.razon_social', '=', 'asign.transport')->where('asign.cntr_number', '=', $cntr_number)->get();
-        
+        return $query->count();
         if ($query->count() == 1) {
           
             $booking = $query[0]->booking;
@@ -334,7 +334,7 @@ class crearpdfController extends Controller
             } 
         } else {
             
-            echo 'no hay instrucción para enviar';
+            return 'no hay instrucción para enviar';
         }
         
     }

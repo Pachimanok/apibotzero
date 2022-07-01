@@ -178,7 +178,7 @@
                                 <td>
                                     <table align="center" border="0" cellpadding="0" cellspacing="0"
                                         class="row-content stack" role="presentation"
-                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f0d6d6; background-image: url('images/bg_cart_2.png'); background-position: top center; background-repeat: no-repeat; color: #000000; width: 650px;"
+                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #d6d9f0; background-image: url('images/bg_cart_2.png'); background-position: top center; background-repeat: no-repeat; color: #000000; width: 650px;"
                                         width="650">
                                         <tbody>
                                             <tr>
@@ -198,7 +198,7 @@
                                                                         <p
                                                                             style="margin: 0; font-size: 14px; text-align: center;">
                                                                             <span style="font-size:38px;"><strong><span
-                                                                                        style="font-size:38px; color:#5f36f4;">ASIGNACIÓN DE UNIDAD</strong></span>
+                                                                                        style="font-size:38px; color:#020858;">ASIGNACIÓN DE UNIDAD</strong></span>
                                                                         </p>
                                                                     </div>
                                                                 </div>

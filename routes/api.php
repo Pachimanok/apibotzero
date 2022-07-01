@@ -29,7 +29,7 @@ Route::get('/imprimirEviarInstrucivo/{cntr}','App\Http\Controllers\crearpdfContr
 
 Route::get('/mailPrueba','App\Http\Controllers\emailController@prueba');  
 Route::get('/mailStatus/{cntr}/{empresa}/{booking}/{user}/{tipo}','App\Http\Controllers\emailController@cambiaStatus');  
-Route::get('/cargaAsignada/{transport}/{transport_agent}/{driver}/{user}/{empresa}/{truck}/{truck_semi}/{cntr_number}/{id}/{booking}','App\Http\Controllers\emailController@cargaAsignada');  
+Route::get('/cargaAsignada/{id}','App\Http\Controllers\emailController@cargaAsignada');  
 
 
 Route::post('/imprimir/create','App\Http\Controllers\crearpdfControllerPDF@store'); //mostrar todos

@@ -6,13 +6,11 @@ use App\Mail\CamnioStatus;
 use App\Mail\cargaAsignada;
 use App\Mail\cargaAsignadaEditada;
 use App\Mail\CargaConProblemas;
-use App\Mail\correoDePrueba;
 use App\Mail\IngresadoStacking;
 use App\Models\empresa;
 use App\Models\logapi;
 use App\Models\statu;
 use Carbon\Carbon;
-use DateTimeZone;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
@@ -26,107 +24,51 @@ class emailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function prueba()
-    {
-        return $_GET['description'];
 
-        Mail::to('priopelliza@gmail.com')->send(new correoDePrueba);
+    public function cargaAsignada($id){
 
-        return 'mensaje enviado';
-    }
-    public function cargaAsignada($transport,$transport_agent,$driver,$user,$empresa,$truck,$truck_semi,$cntr_number,$id,$booking){
-
-
-        
         $date = Carbon::now('-03:00');
-        $to = DB::table('users')->select('email')->where('username', '=', $user)->get();
+        $asign = DB::table('asign')->where('id', '=', $id)->get();
+        $dAsign = $asign[0];
+        
+        $to = DB::table('users')->select('email')->where('username', '=', $dAsign->user)->get();
 
         $data = [
-            'driver'=>$driver, 
-            'cntr_number'=>$cntr_number, 
-            'booking'=>$booking, 
-            'truck'=>$truck, 
-            'truck_semi'=>$truck_semi, 
-            'transport'=>$transport, 
-            'transport_agent'=>$transport_agent,
-            'user'=>$user,
-            'company'=>$empresa,
+            'driver' => $dAsign->driver,
+            'cntr_number' => $dAsign->cntr_number,
+            'booking' => $dAsign->booking,
+            'truck' => $dAsign->truck,
+            'truck_semi' => $dAsign->truck_semi,
+            'transport' => $dAsign->transport,
+            'transport_agent' => $dAsign->transport_agent,
+            'user' => $dAsign->user,
+            'company' => $dAsign->company
         ];
-        
-        
-        $id = DB::table('asign')->select('id')->where('cntr_number','=',$cntr_number)->get();
-        $qid = $id->count();
-        
-        if($qid == 0){
-           
-            $logapi = new logapi();
-            $logapi->user = $user;
-            $logapi->detalle = 'AsiganaCarga';
-            $logapi->save();
 
-            $query = DB::table('asign')->insert($data);
-            
-            if( $query == 1){
+        $logapi = new logapi();
+        $logapi->user = $dAsign->user;
+        $logapi->detalle = 'AsignaCarga';
+        $logapi->save();
 
-            Mail::to('priopelliza@gmail.com')->send(new cargaAsignada($data,$date)); 
-            
-            return 'ok';
-            
-            }else{
-                
-                return 'error';
-            }
+        Mail::to('priopelliza@gmail.com')->send(new cargaAsignada($data, $date));
+        return 'ok';
 
-        }else{
+    }
+
+    public function cambiaStatus($cntr, $empresa, $booking, $user, $tipo)
+    {
 
         $logapi = new logapi();
         $logapi->user = $user;
-        $logapi->detalle = 'EditaAsiganacionCarga';
-        $logapi->save();
-        
-        $data = [
-            'driver'=>$driver, 
-            'cntr_number'=>$cntr_number, 
-            'booking'=>$booking, 
-            'truck'=>$truck, 
-            'truck_semi'=>$truck_semi, 
-            'transport'=>$transport, 
-            'transport_agent'=>$transport_agent,
-            'user'=>$user,
-            'company'=>$empresa,
-        ];
-        
-           
-            $actuliza = DB::table('asign')->where('id', $id[0]->id)->update($data);
-           
-            if($actuliza == 0 |$actuliza == 1 ){
-
-                Mail::to('priopelliza@gmail.com')->send(new cargaAsignadaEditada($data, $date)); 
-                return 'ok'; 
-
-            }else{
-
-                return 'error'; 
-
-            }
-            
-        }
-    }
-
-    public function cambiaStatus($cntr,$empresa,$booking,$user,$tipo)
-    {
-        
-        $logapi = new logapi();
-        $logapi->user = $user;
-        $logapi->detalle = 'Envio Mail_'.$tipo;
+        $logapi->detalle = 'Envio Mail_' . $tipo;
         $logapi->save();
         $date = Carbon::now('-03:00');
-        
-        
-        if($tipo == 'problema'){
 
-            $qd = DB::table('status')->select('status')->where('cntr_number','=',$cntr)->latest('id')->first();
-            $description= $qd->status;
+
+        if ($tipo == 'problema') {
+
+            $qd = DB::table('status')->select('status')->where('cntr_number', '=', $cntr)->latest('id')->first();
+            $description = $qd->status;
             $datos = [
                 'cntr' => $cntr,
                 'description' =>  $description,
@@ -136,19 +78,19 @@ class emailController extends Controller
                 'date' => $date
             ];
 
-            
-            $qempresa = DB::table('carga')->select('empresa')->where('booking','=',$booking)->get();
+
+            $qempresa = DB::table('carga')->select('empresa')->where('booking', '=', $booking)->get();
             $empresa = $qempresa[0]->empresa;
-            $qmail = DB::table('empresas')->where('razon_social','=',$empresa)->select('mail_logistic')->get();
+            $qmail = DB::table('empresas')->where('razon_social', '=', $empresa)->select('mail_logistic')->get();
             $mail = $qmail[0]->mail_logistic;
 
-            Mail::to($mail)->send(new CargaConProblemas($datos)); 
+            Mail::to($mail)->send(new CargaConProblemas($datos));
             return 'ok';
 
-        }elseif($tipo == 'stacking'){
+        } elseif ($tipo == 'stacking') {
 
-            $qd = DB::table('status')->select('status','main_status')->where('cntr_number','=',$cntr)->latest('id')->first();
-            $description= $qd->status;
+            $qd = DB::table('status')->select('status', 'main_status')->where('cntr_number', '=', $cntr)->latest('id')->first();
+            $description = $qd->status;
             $status = $qd->main_status;
 
             $datos = [
@@ -160,19 +102,18 @@ class emailController extends Controller
                 'date' => $date
             ];
 
-            $qempresa = DB::table('carga')->select('empresa')->where('booking','=',$booking)->get();
+            $qempresa = DB::table('carga')->select('empresa')->where('booking', '=', $booking)->get();
             $empresa = $qempresa[0]->empresa;
-            $qmail = DB::table('empresas')->where('razon_social','=',$empresa)->select('mail_logistic')->get();
+            $qmail = DB::table('empresas')->where('razon_social', '=', $empresa)->select('mail_logistic')->get();
             $mail = $qmail[0]->mail_logistic;
 
-           Mail::to($mail)->send(new IngresadoStacking($datos)); 
-           return 'ok';
+            Mail::to($mail)->send(new IngresadoStacking($datos));
+            return 'ok';
+        } else {
 
-        }else{
 
-           
-            $qd = DB::table('status')->select('status','main_status')->where('cntr_number','=',$cntr)->latest('id')->first();
-            $description= $qd->status;
+            $qd = DB::table('status')->select('status', 'main_status')->where('cntr_number', '=', $cntr)->latest('id')->first();
+            $description = $qd->status;
             $status = $qd->main_status;
 
             $datos = [
@@ -185,16 +126,14 @@ class emailController extends Controller
                 'status' => $status
             ];
 
-            $qempresa = DB::table('carga')->select('empresa')->where('booking','=',$booking)->get();
+            $qempresa = DB::table('carga')->select('empresa')->where('booking', '=', $booking)->get();
             $empresa = $qempresa[0]->empresa;
-            $qmail = DB::table('empresas')->where('razon_social','=',$empresa)->select('mail_logistic')->get();
+            $qmail = DB::table('empresas')->where('razon_social', '=', $empresa)->select('mail_logistic')->get();
             $mail = $qmail[0]->mail_logistic;
 
-            Mail::to($mail)->send(new CamnioStatus($datos)); 
+            Mail::to($mail)->send(new CamnioStatus($datos));
             return 'ok';
-
         }
-        
     }
 
     /**
