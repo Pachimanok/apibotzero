@@ -32,7 +32,17 @@ Route::get('/mailStatus/{cntr}/{empresa}/{booking}/{user}/{tipo}','App\Http\Cont
 Route::get('/cargaAsignada/{id}','App\Http\Controllers\emailController@cargaAsignada');  
 
 
-Route::post('/imprimir/create','App\Http\Controllers\crearpdfControllerPDF@store'); //mostrar todos
-Route::get('/imprimirIns','App\Http\Controllers\imprimirPDF@store'); //mostrar todos
-Route::put('/imprimir/{id}','App\Http\Controllers\imprimirPDF@update');//actualizar
-Route::delete('/imprimir','App\Http\Controllers\imprimirPDF@destroy'); // eliminar
+// Route::post('/imprimir/create','App\Http\Controllers\crearpdfControllerPDF@store')mostrar todos
+// Route::get('/imprimirIns','App\Http\Controllers\imprimirPDF@store'); //mostrar todos
+//Route::put('/imprimir/{id}','App\Http\Controllers\imprimirPDF@update');//actualizar
+//Route::delete('/imprimir','App\Http\Controllers\imprimirPDF@destroy'); // eliminar
+
+Route::post('/docs/{booking}','App\Http\Controllers\DocumetController@store');
+Route::post('/docsAta/{booking}','App\Http\Controllers\DocumetController@storeAta');
+
+Route::get('/docsAtaReed/{booking}/{user}','App\Http\Controllers\DocumetController@index');
+Route::get('/docsCntr/{booking}/{user}/{cntr}','App\Http\Controllers\DocumetController@indexCntr');
+
+
+Route::get('/docsDel','App\Http\Controllers\DocumetController@destroy'); //mostrar todos
+ //mostrar todos
