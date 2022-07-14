@@ -28,7 +28,7 @@ class DocumetController extends Controller
 
         }else{
 
-            $documet = documet::where(['booking' => $booking, 'eliminado' => 0])->get();
+            $documet = documet::where(['booking' => $booking, 'eliminado' => 0, 'cntr' => null])->get();
             return $documet->toJson();
         }
         
