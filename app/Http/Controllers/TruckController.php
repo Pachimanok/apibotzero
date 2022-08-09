@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoretruckRequest;
 use App\Http\Requests\UpdatetruckRequest;
 use App\Models\truck;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -55,6 +56,9 @@ class TruckController extends Controller
     public function store(StoretruckRequest $request)
     {
 
+        $customerId = DB::table('users')->select('customer_id')->where('username','=',$request['user'])->get(0); 
+        $cId =  $customerId[0]->customer_id;
+
         $truck = new truck();
         $truck->model = $request['model'];
         $truck->type = $request['type'];
@@ -64,7 +68,7 @@ class TruckController extends Controller
         $truck->satelital_location = $request['satelital_location'];
         $truck->transport_id = $request['transport_id'];
         $truck->user = $request['user'];
-        $truck->customer_id = $request['customer_id'];
+        $truck->customer_id = $cId;
         $truck->save();
 
         return $truck;
@@ -82,7 +86,7 @@ class TruckController extends Controller
     {
         $truck = truck::find($truck);
         return $truck;
-        
+
     }
 
     /**
@@ -106,6 +110,11 @@ class TruckController extends Controller
     public function update(UpdatetruckRequest $request, truck $truck)
     {
 
+
+
+        $customerId = DB::table('users')->select('customer_id')->where('username','=',$request['user'])->get(0); 
+        $cId =  $customerId[0]->customer_id;
+
         $truck->model = $request['model'];
         $truck->type = $request['type'];
         $truck->domain = $request['domain'];
@@ -114,7 +123,7 @@ class TruckController extends Controller
         $truck->satelital_location = $request['satelital_location'];
         $truck->transport_id = $request['transport_id'];
         $truck->user = $request['user'];
-        $truck->customer_id = $request['customer_id'];
+        $truck->customer_id = $cId;
         $truck->save();
 
         return $truck;
