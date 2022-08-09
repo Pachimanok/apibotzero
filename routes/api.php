@@ -46,3 +46,23 @@ Route::get('/docsCntr/{booking}/{user}/{cntr}','App\Http\Controllers\DocumetCont
 
 Route::get('/docsDel','App\Http\Controllers\DocumetController@destroy'); //mostrar todos
  //mostrar todos
+
+
+ // TRUCK CONTROLLLER 
+Route::post('/truck','App\Http\Controllers\TruckController@store');
+Route::delete('/truck/{truck}','App\Http\Controllers\TruckController@destroy');
+Route::post('/truck/{truck}','App\Http\Controllers\TruckController@update');
+Route::get('/trucks/{customer}','App\Http\Controllers\TruckController@index');
+Route::get('/truck/{truck}','App\Http\Controllers\TruckController@show');
+
+
+
+// TRAILER CONTROLLLER 
+Route::post('/trailer','App\Http\Controllers\TrailerController@store');
+Route::post('/trailer/{trailer}','App\Http\Controllers\TrailerController@update');
+Route::delete('/trailer/{trailer}','App\Http\Controllers\TrailerController@destroy');
+
+
+Route::get('/user/{user}','App\Http\Controllers\UserController@show');
+
+

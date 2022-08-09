@@ -9,6 +9,7 @@ use Illuminate\Database\Console\DbCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
+
 class DocumetController extends Controller
 {
     /**

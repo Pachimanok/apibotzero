@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Svg\Surface\SurfacePDFLib;
 
+
 class crearpdfController extends Controller
 {
     /**
