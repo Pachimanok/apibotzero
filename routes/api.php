@@ -37,30 +37,33 @@ Route::get('/cargaAsignada/{id}','App\Http\Controllers\emailController@cargaAsig
 //Route::put('/imprimir/{id}','App\Http\Controllers\imprimirPDF@update');//actualizar
 //Route::delete('/imprimir','App\Http\Controllers\imprimirPDF@destroy'); // eliminar
 
-Route::post('/docs/{booking}','App\Http\Controllers\DocumetController@store');
-Route::post('/docsAta/{booking}','App\Http\Controllers\DocumetController@storeAta');
+////////////////// DOCUMENTS ///////////////////
 
-Route::get('/docsAtaReed/{booking}/{user}','App\Http\Controllers\DocumetController@index');
-Route::get('/docsCntr/{booking}/{user}/{cntr}','App\Http\Controllers\DocumetController@indexCntr');
+//////// USUARIOS INTERNOS ////////
 
+Route::post('/docs/{booking}','App\Http\Controllers\DocumentController@store');
+Route::get('/docsCntr/{booking}/{user}/{cntr}','App\Http\Controllers\DocumentController@indexCntr');
+Route::get('/docsDel','App\Http\Controllers\DocumentController@destroy'); 
 
-Route::get('/docsDel','App\Http\Controllers\DocumetController@destroy'); //mostrar todos
- //mostrar todos
+//////// USUARIOS EXTERNOS ////////
+
+Route::get('/docsAtaReed/{booking}/{user}','App\Http\Controllers\DocumentController@index');
+Route::post('/docsAta/{booking}','App\Http\Controllers\DocumentController@storeAta');
 
 
  // TRUCK CONTROLLLER 
-Route::post('/truck','App\Http\Controllers\TruckController@store');
-Route::delete('/truck/{truck}','App\Http\Controllers\TruckController@destroy');
-Route::post('/truck/{truck}','App\Http\Controllers\TruckController@update');
-Route::get('/trucks/{customer}','App\Http\Controllers\TruckController@index');
-Route::get('/truck/{truck}','App\Http\Controllers\TruckController@show');
-
-
+Route::post('/truck','App\Http\Controllers\TruckController@store'); // C
+Route::get('/trucks/{customer}','App\Http\Controllers\TruckController@index');// R ALL
+Route::get('/truck/{truck}','App\Http\Controllers\TruckController@show'); // R ONE
+Route::post('/truck/{truck}','App\Http\Controllers\TruckController@update'); // U 
+Route::delete('/truck/{truck}','App\Http\Controllers\TruckController@destroy'); // D 
 
 // TRAILER CONTROLLLER 
-Route::post('/trailer','App\Http\Controllers\TrailerController@store');
-Route::post('/trailer/{trailer}','App\Http\Controllers\TrailerController@update');
-Route::delete('/trailer/{trailer}','App\Http\Controllers\TrailerController@destroy');
+Route::post('/trailer','App\Http\Controllers\TrailerController@store'); // C
+Route::get('/trailer/{customer}','App\Http\Controllers\TrailerController@index');// R ALL
+Route::get('/trailer/{trailer}','App\Http\Controllers\TrailerController@show'); // R ONE
+Route::post('/trailer/{trailer}','App\Http\Controllers\TrailerController@update'); // U
+Route::delete('/trailer/{trailer}','App\Http\Controllers\TrailerController@destroy'); // D
 
 
 Route::get('/user/{user}','App\Http\Controllers\UserController@show');

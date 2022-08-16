@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoredocumetRequest;
 use App\Http\Requests\UpdatedocumetRequest;
 use App\Models\documet;
-use Illuminate\Database\Console\DbCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -19,7 +18,6 @@ class DocumetController extends Controller
      */
     public function index($booking,$user)
     {
-
         $permiso = DB::table('users')->select('permiso')->where('username','=',$user)->get();
 
         if( $permiso[0]->permiso == 'ata'){
@@ -49,7 +47,6 @@ class DocumetController extends Controller
             $documet = documet::where(['booking' => $booking, 'eliminado' => 0,'cntr' => $cntr])->get();
             return $documet->toJson();
         }
-        
     }
 
     /**
@@ -59,12 +56,26 @@ class DocumetController extends Controller
      */
     public function storeAta(StoredocumetRequest $request,$booking)
     {
-        
+       
         $nameArchivo = $request->file('file')->getClientOriginalName();
-        $request->file('file')->storeAs('public/'.$booking,$nameArchivo);
-        $extension = $request->file('file')->getClientOriginalExtension();
-        $user= $request['user'];
+        $folder ='documents/'. $booking;
+           
+        if(!file_exists($folder)){
+
+            mkdir('documents/'. $booking, 0777, true);
+            $path = $request->file('file')->storeAs('public/'.$folder,$nameArchivo);
+            $extension = $request->file('file')->getClientOriginalExtension();
+
+
+        }else{
+
+            $path = $request->file('file')->storeAs('public/'.$folder,$nameArchivo);
+            $extension = $request->file('file')->getClientOriginalExtension();
+
+        }
         
+        
+        $user= $request['user'];
         $documet = new documet();
         $documet->name = $nameArchivo;
         $documet->doc = $nameArchivo;
@@ -84,88 +95,79 @@ class DocumetController extends Controller
      */
     public function store(StoredocumetRequest $request, $booking)
     {
-        $user= $request['user'];
-        $nameArchivo = $request->file('file')->getClientOriginalName();
-        
-
-        if($request['cntr'] != '0' ) {
-
-            $request->file('file')->storeAs('public/'.$booking.'/'.$request['cntr'],$nameArchivo);
-            $extension = $request->file('file')->getClientOriginalExtension();
-            
-            $documet = new documet();
-            $documet->name = $nameArchivo;
-            $documet->doc = $nameArchivo;
-            $documet->booking = $booking;
-            $documet->cntr = $request['cntr'];
-            $documet->user = $user;
-            $documet->extension = $extension;
-            $documet->save();
-
-            return response()->json(['success'=>$nameArchivo]);
-
-
-        } else {
-
-            $request->file('file')->storeAs('public/'.$booking,$nameArchivo);
-            $extension = $request->file('file')->getClientOriginalExtension();
-
-            $documet = new documet();
-            $documet->name = $nameArchivo;
-            $documet->doc = $nameArchivo;
-            $documet->booking = $booking;
-            $documet->extension = $extension;
-            $documet->user = $user;
-            
-            $documet->save();
-            
-            return response()->json(['success'=>$nameArchivo]);
-
-        }
-    
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\documet  $documet
-     * @return \Illuminate\Http\Response
-     */
-    public function show(documet $documet)
-    {
+       // http://rail.com.ar/storage/instructivos/{booking}]/{cntr}/{nameArchivo}
        
+       $user= $request['user'];
+       $nameArchivo = $request->file('file')->getClientOriginalName();
 
+       if($request['cntr'] != '0' ) {
+
+           $folder ='documents/'. $booking. '/' . $request['cntr'];
+          
+           if(!file_exists($folder)){
+
+               mkdir('documents/'. $booking. '/' . $request['cntr'], 0777, true);
+               
+               $path = $request->file('file')->storeAs('public/'.$folder,$nameArchivo);
+               $extension = $request->file('file')->getClientOriginalExtension();
+
+
+           }else{
+
+               $path = $request->file('file')->storeAs('public/'.$folder,$nameArchivo);
+               $extension = $request->file('file')->getClientOriginalExtension();
+
+           }
+
+           $documet = new documet();
+           $documet->name = $nameArchivo;
+           $documet->doc = $nameArchivo;
+           $documet->booking = $booking;
+           $documet->cntr = $request['cntr'];
+           $documet->user = $user;
+           $documet->extension = $extension;
+           $documet->save();
+
+           return response()->json(['success'=>$nameArchivo]);
+
+
+       } else {
+
+           $folder ='documents/'. $booking;
+           if(!file_exists($folder)){
+              
+               
+               mkdir('documents/'. $booking, 0777, true);
+               $path = $request->file('file')->storeAs('public/'.$folder,$nameArchivo);
+               $extension = $request->file('file')->getClientOriginalExtension();
+
+               
+
+           }else{
+
+               $path = $request->file('file')->storeAs('public/'.$folder,$nameArchivo);
+               $extension = $request->file('file')->getClientOriginalExtension();
+
+           }
+          
+           
+
+           $path = $request->file('file')->storeAs('public/'.$folder,$nameArchivo);
+           $extension = $request->file('file')->getClientOriginalExtension();
+
+           $documet = new documet();
+           $documet->name = $nameArchivo;
+           $documet->doc = $nameArchivo;
+           $documet->booking = $booking;
+           $documet->extension = $extension;
+           $documet->user = $user;
+           $documet->save();
+           
+           return response()->json(['success'=>$nameArchivo]);
+
+       }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\documet  $documet
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(documet $documet)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatedocumetRequest  $request
-     * @param  \App\Models\documet  $documet
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatedocumetRequest $request, documet $documet,$booking)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\documet  $documet
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(StoredocumetRequest $request)
     {
         $link = $request['link'];
@@ -176,6 +178,5 @@ class DocumetController extends Controller
         $doc->save();
 
         return Redirect::to($link); 
-
     }
 }
