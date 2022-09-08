@@ -53,6 +53,13 @@ class TruckController extends Controller
      * @param  \App\Http\Requests\StoretruckRequest  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function trailerAsign($id)
+    {
+        $asign =DB::table('asign')->where('id','=',$id)->get();
+        return $asign;
+    }
+
     public function store(StoretruckRequest $request)
     {
 
@@ -86,6 +93,15 @@ class TruckController extends Controller
     {
         $truck = truck::find($truck);
         return $truck;
+
+    }
+
+    public function showTransport($truck)
+    {
+       
+        /* Hay que recibir el id del Transporte */
+        $trucks = DB::table('trucks')->where('transport_id','=',$truck)->get(); 
+        return $trucks;
 
     }
 

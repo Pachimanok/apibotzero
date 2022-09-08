@@ -30,6 +30,7 @@ class TrailerController extends Controller
         //
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -65,6 +66,14 @@ class TrailerController extends Controller
     {
         $trailer = trailer::find($trailer);
         return $trailer;
+    }
+
+    public function showTrailer($transporte)
+    {
+       
+        $trailers = DB::table('trailers')->where('transport_id','=',$transporte)->get(); 
+        return $trailers;
+
     }
 
     /**
