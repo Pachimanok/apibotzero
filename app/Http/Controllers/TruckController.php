@@ -126,8 +126,6 @@ class TruckController extends Controller
     public function update(UpdatetruckRequest $request, truck $truck)
     {
 
-
-
         $customerId = DB::table('users')->select('customer_id')->where('username','=',$request['user'])->get(0); 
         $cId =  $customerId[0]->customer_id;
 

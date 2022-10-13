@@ -51,8 +51,6 @@ Route::get('/docsAtaReed/{booking}/{user}','App\Http\Controllers\DocumentControl
 Route::post('/docsAta/{booking}','App\Http\Controllers\DocumentController@storeAta');
 Route::post('/carga','App\Http\Controllers\LoadController@store');
 
-
-
  // TRUCK CONTROLLLER 
 Route::post('/truck','App\Http\Controllers\TruckController@store'); // C
 Route::get('/trucks/{customer}','App\Http\Controllers\TruckController@index');// R ALL
@@ -72,7 +70,6 @@ Route::get('/trailerTransport/{transport_id}','App\Http\Controllers\TrailerContr
 
 // ASIGNACIONES
 Route::get('/truckAsign/{id}','App\Http\Controllers\TruckController@trailerAsign'); // Show for Transport
-
 
 // DRIVER CONTROLLLER trailerAsign
 
@@ -125,6 +122,20 @@ Route::get('/excelTransports','App\Http\Controllers\excelController@transports')
 // SEGUROS
 
 Route::post('/seguro','App\Http\Controllers\seguroController@store');
+
+
+// MAPS
+
+
+Route::get('/lugarDeCarga/{patente}','App\Http\Controllers\lugaresDeCarga@coordenadas');
+Route::get('/accionLugarDeCarga/{idTrip}','App\Http\Controllers\lugaresDeCarga@accionLugarDeCarga');
+Route::get('/accionLugarAduana/{idTrip}','App\Http\Controllers\lugaresDeCarga@accionLugarAduana');
+Route::get('/accionLugarDescarga/{idTrip}','App\Http\Controllers\lugaresDeCarga@accionLugarDescarga');
+
+Route::get('/servicioSatelital','App\Http\Controllers\ServiceSatelital@serviceSatelital');
+
+
+
 
 
 
