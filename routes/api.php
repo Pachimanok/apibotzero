@@ -34,8 +34,8 @@ Route::get('/cargaAsignada/{id}','App\Http\Controllers\emailController@cargaAsig
 
 // Route::post('/imprimir/create','App\Http\Controllers\crearpdfControllerPDF@store')mostrar todos
 // Route::get('/imprimirIns','App\Http\Controllers\imprimirPDF@store'); //mostrar todos
-//Route::put('/imprimir/{id}','App\Http\Controllers\imprimirPDF@update');//actualizar
-//Route::delete('/imprimir','App\Http\Controllers\imprimirPDF@destroy'); // eliminar
+// Route::put('/imprimir/{id}','App\Http\Controllers\imprimirPDF@update');//actualizar
+// Route::delete('/imprimir','App\Http\Controllers\imprimirPDF@destroy'); // eliminar
 
 ////////////////// DOCUMENTS ///////////////////
 
@@ -74,7 +74,6 @@ Route::get('/truckAsign/{id}','App\Http\Controllers\TruckController@trailerAsign
 // DRIVER CONTROLLLER trailerAsign
 
 Route::get('/drivers/{transport_id}','App\Http\Controllers\DriverController@showDriver'); // Show for Transport
-
 Route::get('/user/{user}','App\Http\Controllers\UserController@show');
 
 
@@ -123,16 +122,15 @@ Route::get('/excelTransports','App\Http\Controllers\excelController@transports')
 
 Route::post('/seguro','App\Http\Controllers\seguroController@store');
 
-
 // MAPS
-
-
 Route::get('/lugarDeCarga/{patente}','App\Http\Controllers\lugaresDeCarga@coordenadas');
 Route::get('/accionLugarDeCarga/{idTrip}','App\Http\Controllers\lugaresDeCarga@accionLugarDeCarga');
 Route::get('/accionLugarAduana/{idTrip}','App\Http\Controllers\lugaresDeCarga@accionLugarAduana');
 Route::get('/accionLugarDescarga/{idTrip}','App\Http\Controllers\lugaresDeCarga@accionLugarDescarga');
 
 Route::get('/servicioSatelital','App\Http\Controllers\ServiceSatelital@serviceSatelital');
+Route::get('/pruebaSatelital','App\Http\Controllers\satelitalPruena@comparaCoordendas');
+
 
 
 

@@ -43,11 +43,9 @@ class lugaresDeCarga extends Controller
             ->join('customer_unload_place', 'customer_unload_place.description', '=', 'carga.unload_place')
             ->where('asign.truck', '=', $patente)
             ->get();
-
-
+        
         return $coordenadas;
 
-        Mail::to('priopelliza@gmail.com')->send(new ubicacion());
         // SELECT * FROM `carga` INNER JOIN `cntr` INNER JOIN `asign` ON carga.booking = cntr.booking AND cntr.cntr_number = asign.cntr_number WHERE asign.truck = 'AE792WJ';
     }
     /**
@@ -111,7 +109,7 @@ class lugaresDeCarga extends Controller
                 $avisadoMas = $actualizarAvisado->avisado + 1;
                 $actualizarAvisado->avisado = $avisadoMas;
                 $actualizarAvisado->save();
-                return 'ok, No actulizó Status - No envió mail.'  . $qd->avisado;
+              /*   return 'ok, No actulizó Status - No envió mail.'  . $qd->avisado; */
 
 
             } elseif ($qd->avisado != 0 && $qd->avisado >= 15) {
@@ -147,7 +145,7 @@ class lugaresDeCarga extends Controller
                 $avisadoMas = $actualizarAvisado->avisado + 1;
                 $actualizarAvisado->avisado = $avisadoMas;
                 $actualizarAvisado->save();
-                return 'ok, Actulizó Status - No envió mail.'  . $qd->avisado;
+               /*  return 'ok, Actulizó Status - No envió mail.'  . $qd->avisado; */
 
             }
         }else{
@@ -181,7 +179,7 @@ class lugaresDeCarga extends Controller
             $avisadoMas = $actualizarAvisado->avisado + 1;
             $actualizarAvisado->avisado = $avisadoMas;
             $actualizarAvisado->save();
-            return 'ok, Actulizó Status - Envió mail.'  . $qd->avisado;
+            /* return 'ok, Actulizó Status - Envió mail.'  . $qd->avisado; */
         }
     }
     public function accionLugarAduana($idTrip)

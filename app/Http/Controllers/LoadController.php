@@ -17,7 +17,8 @@ class LoadController extends Controller
      */
     public function index()
     {
-        //
+        // Filtrar por semanas y traer esas cargas. 
+            // show (mostrar el detalle de la carga mas el detalle de cada uno de los contendores y los documentos.)
     }
 
     /**

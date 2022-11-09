@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\trucks;
 use App\Models\position;
 use App\Models\truck;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request as Psr7Request;
-use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
-use LDAP\Result;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 
-class ServiceSatelital extends Controller
+
+class satelitalPruena extends Controller
 {
-    public function serviceSatelital()
-    {
+    //
 
+    public function comparaCoordendas()
+    {
         $i = 0;
         foreach (truck::all() as $truck) {
 
+            
             $client = new Client();
             $headers = [
                 'Content-Type' => 'application/json'
@@ -28,7 +30,7 @@ class ServiceSatelital extends Controller
             "apiKey":"a4f0a4e8e5d34e5b7b7bc16dab941060a5c848c9"
             }';
 
-            $request = new Psr7Request('GET', 'https://app.akercontrol.com/ws/flota/2612128105/E6HW19', $headers, $body); // TEST: E6HW19 - PRODUCCION: C2QC20
+            $request = new Psr7Request('GET', 'https://app.akercontrol.com/ws/flota/2612128105/C2QC20', $headers, $body);
             $res = $client->sendAsync($request)->wait();
             $respuesta = $res->getBody();
             $r = json_decode($respuesta, true);
@@ -49,7 +51,7 @@ class ServiceSatelital extends Controller
 
             /*  echo 'El Cambion esta posicionado en:' . $latAker . $lngAker; */
 
-            $requestBOT = new Psr7Request('GET', 'https://rail.com.ar/api/lugarDeCarga/' . $truck->domain);
+            $requestBOT = new Psr7Request('GET', 'https://botzero.ar/api/lugarDeCarga/' . $truck->domain);
             $resBOT = $client->sendAsync($requestBOT)->wait();
             $respuestaBOT = $resBOT->getBody();
             $rBOT = json_decode($respuestaBOT, true);
@@ -100,7 +102,7 @@ class ServiceSatelital extends Controller
                 if ($d <= 50) { // lugar de Carga
 
                     $clientCarga = new Client();
-                    $requestCarga = new Psr7Request('GET', 'https://rail.com.ar/api/accionLugarDeCarga/' . $IdTrip);
+                    $requestCarga = new Psr7Request('GET', 'https://botzero.ar/api/accionLugarDeCarga/' . $IdTrip);
                     $resCarga = $clientCarga->sendAsync($requestCarga)->wait();
                     return $resCarga;
                 }
@@ -108,14 +110,14 @@ class ServiceSatelital extends Controller
                 if ($d2 <= 50) { // lugar de aduana
 
                     $clientAduana = new Client();
-                    $requestAduana = new Psr7Request('GET', 'https://rail.com.ar/api/accionLugarAduana/' . $IdTrip);
+                    $requestAduana = new Psr7Request('GET', 'https://botzero.ar/api/accionLugarAduana/' . $IdTrip);
                     $resAduana = $clientAduana->sendAsync($requestAduana)->wait();
                     return $resAduana;
                 }
                 if ($d3 <= 50) { // lugar de descarga
 
                     $clientDescarga = new Client();
-                    $requestDescarga = new Psr7Request('GET', 'https://rail.com.ar/api/accionLugarDescarga/' . $IdTrip);
+                    $requestDescarga = new Psr7Request('GET', 'https://botzero.ar/api/accionLugarDescarga/' . $IdTrip);
                     $resDescarga = $clientDescarga->sendAsync($requestDescarga)->wait();
                     return $resDescarga;
                 }
@@ -125,6 +127,5 @@ class ServiceSatelital extends Controller
 
             echo 'no esta en ningun punto';
         }
-    
     }
 }
