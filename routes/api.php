@@ -76,7 +76,6 @@ Route::get('/truckAsign/{id}','App\Http\Controllers\TruckController@trailerAsign
 Route::get('/drivers/{transport_id}','App\Http\Controllers\DriverController@showDriver'); // Show for Transport
 Route::get('/user/{user}','App\Http\Controllers\UserController@show');
 
-
 // EXPORT EXCEL
 
 // Reportes de Cargas por fechas
@@ -133,7 +132,17 @@ Route::get('/pruebaSatelital','App\Http\Controllers\satelitalPruena@comparaCoord
 
 
 
+//RUTAS NUEVAS
 
+//User
+Route::get('/users','App\Http\Controllers\UserController@index'); // Busca los users con el permiso seleccionado
+Route::get('/usersPermiso/{permiso}','App\Http\Controllers\UserController@usersPermiso'); // Busca los users con el permiso seleccionado
 
+//Empresas
+Route::get('/empresas','App\Http\Controllers\EmpresaController@index'); //Busca todas las empresas
+Route::get('/empresa/{id}','App\Http\Controllers\EmpresaController@show'); //Busca una empresa por el id
+Route::post('/empresa','App\Http\Controllers\EmpresaController@store'); //Crea un cliente
+Route::delete('/empresa/{id}','App\Http\Controllers\EmpresaController@destroy');
+Route::put('/empresa/{id}','App\Http\Controllers\EmpresaController@update');
 
 

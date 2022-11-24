@@ -15,7 +15,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = DB::table('users')->get();
+
+        return $users;
+    }
+
+    public function usersPermiso($permiso)
+    {
+        $users = DB::table('users')->where('permiso','=',$permiso)->get();
+
+        return $users;
     }
 
     /**
@@ -94,4 +103,5 @@ class UserController extends Controller
     {
         //
     }
+
 }
