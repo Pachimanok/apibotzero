@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\paymode;
 
-class UserController extends Controller
+class PayModeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
+        $paymodes = DB::table('paymodes')->get();
 
-        return $users;
-    }
-
-    public function usersPermiso($permiso)
-    {
-        $users = DB::table('users')->where('permiso','=',$permiso)->get();
-
-        return $users;
+        return $paymodes;
     }
 
     /**
@@ -45,7 +38,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paymode = new paymode();
+        $paymode->title = $request['title'];
+        $paymode->description = $request['description'];
+        $paymode->user = $request['user'];
+        $paymode->empresa = $request['empresa'];
+        $paymode->save();
+        return $paymode;
     }
 
     /**
@@ -56,18 +55,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-       $user = DB::table('users')->where('username','=',$id)->get();
-        
-       $user = [
-           'id'=> $user[0]->id,
-           'username'=> $user[0]->username,
-           'email'=> $user[0]->email,
-           'phone'=> $user[0]->celular,
-           'company'=> $user[0]->empresa,
-           'customer_id'=> $user[0]->customer_id,
-           'permiso'=> $user[0]->permiso
-       ];
-       return $user;
+        $paymode = DB::table('paymodes')->where('id','=',$id)->get();
+
+        return $paymode;
     }
 
     /**
@@ -90,7 +80,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $paymode = paymode::findOrFail($id);
+
+        $paymode->title = $request['title'];
+        $paymode->description = $request['description'];
+        $paymode->save();
+        return $paymode;
+
     }
 
     /**
@@ -101,7 +97,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        paymode::destroy($id);
 
+        $existe = paymode::find($id);
+        if($existe){
+            return 'No se elimino el Modo de Pago';
+        }else{
+            return 'Se elimino el Modo de Pago';
+        };
+    }
 }

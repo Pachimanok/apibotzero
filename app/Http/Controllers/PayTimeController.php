@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\paytime;
 
-class UserController extends Controller
+class PayTimeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
+        $paytimes = DB::table('paytimes')->get();
 
-        return $users;
-    }
-
-    public function usersPermiso($permiso)
-    {
-        $users = DB::table('users')->where('permiso','=',$permiso)->get();
-
-        return $users;
+        return $paytimes;
     }
 
     /**
@@ -45,7 +38,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paytime = new paytime();
+        $paytime->title = $request['title'];
+        $paytime->description = $request['description'];
+        $paytime->user = $request['user'];
+        $paytime->empresa = $request['empresa'];
+        $paytime->save();
+        return $paytime;
     }
 
     /**
@@ -56,18 +55,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-       $user = DB::table('users')->where('username','=',$id)->get();
-        
-       $user = [
-           'id'=> $user[0]->id,
-           'username'=> $user[0]->username,
-           'email'=> $user[0]->email,
-           'phone'=> $user[0]->celular,
-           'company'=> $user[0]->empresa,
-           'customer_id'=> $user[0]->customer_id,
-           'permiso'=> $user[0]->permiso
-       ];
-       return $user;
+        $paytime = DB::table('paytimes')->where('id','=',$id)->get();
+
+        return $paytime;
     }
 
     /**
@@ -90,7 +80,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $paytime = paytime::findOrFail($id);
+
+        $paytime->title = $request['title'];
+        $paytime->description = $request['description'];
+        $paytime->save();
+        return $paytime;
     }
 
     /**
@@ -101,7 +96,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        paytime::destroy($id);
 
+        $existe = paytime::find($id);
+        if($existe){
+            return 'No se elimino el Plazo de Pago';
+        }else{
+            return 'Se elimino el Plazo de Pago';
+        };
+    }
 }
