@@ -17,7 +17,7 @@ class EmpresaController extends Controller
     public function index()
     {
         $empresas = DB::table('empresas')->get();
-
+                
         return $empresas;
     }
 

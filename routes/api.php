@@ -131,7 +131,6 @@ Route::get('/servicioSatelital','App\Http\Controllers\ServiceSatelital@serviceSa
 Route::get('/pruebaSatelital','App\Http\Controllers\satelitalPruena@comparaCoordendas');
 
 
-
 //RUTAS NUEVAS
 
 //User
@@ -142,7 +141,26 @@ Route::get('/usersPermiso/{permiso}','App\Http\Controllers\UserController@usersP
 Route::get('/empresas','App\Http\Controllers\EmpresaController@index'); //Busca todas las empresas
 Route::get('/empresa/{id}','App\Http\Controllers\EmpresaController@show'); //Busca una empresa por el id
 Route::post('/empresa','App\Http\Controllers\EmpresaController@store'); //Crea un cliente
-Route::delete('/empresa/{id}','App\Http\Controllers\EmpresaController@destroy');
-Route::put('/empresa/{id}','App\Http\Controllers\EmpresaController@update');
+Route::put('/empresa/{id}','App\Http\Controllers\EmpresaController@update');//Actualizar datos de un cliente
+Route::delete('/empresa/{id}','App\Http\Controllers\EmpresaController@destroy');//Eliminar un cliente
 
+//Modos de Pago
+Route::get('/modoPago','App\Http\Controllers\PayModeController@index'); //Busca todos los modos de pago
+Route::get('/modoPago/{id}','App\Http\Controllers\PayModeController@show'); //Busca un modo de pago
+Route::post('/modoPago','App\Http\Controllers\PayModeController@store'); //Crea un nuevo modo de pago
+Route::put('/modoPago/{id}','App\Http\Controllers\PayModeController@update'); //Actualiza los datos de un modo de pago
+Route::delete('/modoPago/{id}','App\Http\Controllers\PayModeController@destroy'); //Elimina un modo de pago
 
+//Plazo de Pago
+Route::get('/plazoPago','App\Http\Controllers\PayTimeController@index'); //Busca todos los plazos de pago
+Route::get('/plazoPago/{id}','App\Http\Controllers\PayTimeController@show'); //Busca un plazo de pago
+Route::post('/plazoPago','App\Http\Controllers\PayTimeController@store'); //Crea un nuevo plazo de pago
+Route::put('/plazoPago/{id}','App\Http\Controllers\PayTimeController@update'); //Actualiza los datos de un plazo de pago
+Route::delete('/plazoPago/{id}','App\Http\Controllers\PayTimeController@destroy'); //Elimina un plazo de pago
+
+//Transporte
+Route::get('/transporteCustomer/{id}','App\Http\Controllers\TransporteController@indexTransporteCustomer'); //Busca todos los transportes del customerId
+Route::get('/transporte/{id}','App\Http\Controllers\TransporteController@show'); //Busca un transporte
+Route::post('/transporte','App\Http\Controllers\TransporteController@store'); //Crea un nuevo transporte
+Route::put('/transporte/{id}','App\Http\Controllers\TransporteController@update'); //Actualiza los datos de un plazo de pago
+Route::delete('/transporte/{id}','App\Http\Controllers\TransporteController@destroy'); //Elimina un plazo de pago
