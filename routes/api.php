@@ -164,3 +164,14 @@ Route::get('/transporte/{id}','App\Http\Controllers\TransporteController@show');
 Route::post('/transporte','App\Http\Controllers\TransporteController@store'); //Crea un nuevo transporte
 Route::put('/transporte/{id}','App\Http\Controllers\TransporteController@update'); //Actualiza los datos de un plazo de pago
 Route::delete('/transporte/{id}','App\Http\Controllers\TransporteController@destroy'); //Elimina un plazo de pago
+
+//Carga
+Route::get('/carga/{status}', 'App\Http\Controllers\CargaController@indexStatus');
+Route::get('/cargaEmpresa/{empresa}/{status}','App\Http\Controllers\CargaController@indexStatusEmpresa');
+
+//Ata
+Route::get('/atas','App\Http\Controllers\AtaController@index'); //Busca todos los Agente de transporte
+Route::get('/ata/{id}','App\Http\Controllers\AtaController@show'); //Busca un Agente de transporte
+Route::post('/ata','App\Http\Controllers\AtaController@store'); //Crea un nuevo Agente de transporte
+Route::put('/ata/{id}','App\Http\Controllers\AtaController@update'); //Actualiza los datos de un Agente de transporte
+Route::delete('/ata/{id}','App\Http\Controllers\AtaController@destroy'); //Elimina un Agente de transporte
