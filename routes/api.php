@@ -178,7 +178,14 @@ Route::delete('/ata/{id}','App\Http\Controllers\AtaController@destroy'); //Elimi
 
 //Agencia
 Route::get('/agencias','App\Http\Controllers\AgenciaController@index'); //Busca todas las agencias
-Route::get('/agencia/{id}','App\Http\Controllers\AgenciaController@show');
-Route::post('/agencia','App\Http\Controllers\AgenciaController@store');
-Route::put('/agencia/{id}','App\Http\Controllers\AgenciaController@update');
-Route::delete('/agencia/{id}','App\Http\Controllers\AgenciaController@destroy');
+Route::get('/agencia/{id}','App\Http\Controllers\AgenciaController@show'); //Busca una sola agencia
+Route::post('/agencia','App\Http\Controllers\AgenciaController@store'); //Crea una nueva Agencia
+Route::put('/agencia/{id}','App\Http\Controllers\AgenciaController@update'); //Actualiza los datos de una Agencia
+Route::delete('/agencia/{id}','App\Http\Controllers\AgenciaController@destroy'); //Elimina una Agencia
+
+//Deposito de Retiro
+Route::get('/depositoRetiros','App\Http\Controllers\DepositoDeRetiroController@index'); //Busca todos los depositos de retiro
+Route::get('/depositoRetiro/{id}','App\Http\Controllers\DepositoDeRetiroController@show'); //Busca un deposito de retiro
+Route::post('/depositoRetiro','App\Http\Controllers\DepositoDeRetiroController@store');  //Crea un nuevo deposito de retiro
+Route::put('/depositoRetiro/{id}','App\Http\Controllers\DepositoDeRetiroController@update'); //Actualiza los datos de un deposito de retiro
+Route::delete('/depositoRetiro/{id}','App\Http\Controllers\DepositoDeRetiroController@destroy'); //Elimina un deposito de retiro
