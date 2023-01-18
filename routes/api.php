@@ -175,3 +175,10 @@ Route::get('/ata/{id}','App\Http\Controllers\AtaController@show'); //Busca un Ag
 Route::post('/ata','App\Http\Controllers\AtaController@store'); //Crea un nuevo Agente de transporte
 Route::put('/ata/{id}','App\Http\Controllers\AtaController@update'); //Actualiza los datos de un Agente de transporte
 Route::delete('/ata/{id}','App\Http\Controllers\AtaController@destroy'); //Elimina un Agente de transporte
+
+//Agencia
+Route::get('/agencias','App\Http\Controllers\AgenciaController@index'); //Busca todas las agencias
+Route::get('/agencia/{id}','App\Http\Controllers\AgenciaController@show');
+Route::post('/agencia','App\Http\Controllers\AgenciaController@store');
+Route::put('/agencia/{id}','App\Http\Controllers\AgenciaController@update');
+Route::delete('/agencia/{id}','App\Http\Controllers\AgenciaController@destroy');
