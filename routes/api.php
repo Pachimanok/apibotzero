@@ -189,3 +189,10 @@ Route::get('/depositoRetiro/{id}','App\Http\Controllers\DepositoDeRetiroControll
 Route::post('/depositoRetiro','App\Http\Controllers\DepositoDeRetiroController@store');  //Crea un nuevo deposito de retiro
 Route::put('/depositoRetiro/{id}','App\Http\Controllers\DepositoDeRetiroController@update'); //Actualiza los datos de un deposito de retiro
 Route::delete('/depositoRetiro/{id}','App\Http\Controllers\DepositoDeRetiroController@destroy'); //Elimina un deposito de retiro
+
+//Type CNTR
+Route::get('/tiposCntr','App\Http\Controllers\CntrTypeController@index'); //Busca todos los tipos de cntr
+Route::get('/tipoCntr/{id}','App\Http\Controllers\CntrTypeController@show'); //Busca un tipo de cntr
+Route::post('/tipoCntr','App\Http\Controllers\CntrTypeController@store'); //Crea un nuevo tipo de cntr
+Route::put('/tipoCntr/{id}','App\Http\Controllers\CntrTypeController@update'); //Actualiza los datos de un tipo de cntr
+Route::delete('/tipoCntr/{id}','App\Http\Controllers\CntrTypeController@destroy'); //Elimina un tipo de cntr
