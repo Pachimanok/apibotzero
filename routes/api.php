@@ -220,3 +220,11 @@ Route::get('/customerShipper/{id}','App\Http\Controllers\CustomerShipperControll
 Route::post('/customerShipper','App\Http\Controllers\CustomerShipperController@store'); //Crea un nuevo Customer Shipper
 Route::put('/customerShipper/{id}','App\Http\Controllers\CustomerShipperController@update'); //Actualiza los datos de un Customer Shipper
 Route::delete('/customerShipper/{id}','App\Http\Controllers\CustomerShipperController@destroy'); //Elimina un Customer Shipper
+
+//Customer agent
+Route::get('/customersAgent','App\Http\Controllers\CustomerAgentController@index'); //Busca todos los Customer Shipper
+Route::get('/customerAgentEmpresa/{empresa}','App\Http\Controllers\CustomerAgentController@indexCompany'); //Busca todos los Customer Shipper de una compania
+Route::get('/customerAgent/{id}','App\Http\Controllers\CustomerAgentController@show'); //Busca un Customer Shipper de una compania
+Route::post('/customerAgent','App\Http\Controllers\CustomerAgentController@store'); //Crea un nuevo Customer Shipper
+Route::put('/customerAgent/{id}','App\Http\Controllers\CustomerAgentController@update'); //Actualiza los datos de un Customer Shipper
+Route::delete('/customerAgent/{id}','App\Http\Controllers\CustomerAgentController@destroy'); //Elimina un Customer Shipper
