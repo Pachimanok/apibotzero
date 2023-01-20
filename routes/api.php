@@ -196,3 +196,27 @@ Route::get('/tipoCntr/{id}','App\Http\Controllers\CntrTypeController@show'); //B
 Route::post('/tipoCntr','App\Http\Controllers\CntrTypeController@store'); //Crea un nuevo tipo de cntr
 Route::put('/tipoCntr/{id}','App\Http\Controllers\CntrTypeController@update'); //Actualiza los datos de un tipo de cntr
 Route::delete('/tipoCntr/{id}','App\Http\Controllers\CntrTypeController@destroy'); //Elimina un tipo de cntr
+
+//Customer Cnee
+Route::get('/customersCnee','App\Http\Controllers\CustomerCneeController@index'); //Busca todos los Customer Cnee
+Route::get('/customerCneeCompany/{company}','App\Http\Controllers\CustomerCneeController@indexCompany'); //Busca todos los Customer Cnee de una compania
+Route::get('/customerCnee/{id}','App\Http\Controllers\CustomerCneeController@show'); //Busca un Customer Cnee
+Route::post('/customerCnee','App\Http\Controllers\CustomerCneeController@store'); //Crea un nuevo Customer Cnee
+Route::put('/customerCnee/{id}','App\Http\Controllers\CustomerCneeController@update'); //Actualiza los datos de un Customer Cnee
+Route::delete('/customerCnee/{id}','App\Http\Controllers\CustomerCneeController@destroy'); //Elimina un Customer Cnee
+
+//Customer ntfy
+Route::get('/customersNtfy','App\Http\Controllers\CustomerNtfyController@index'); //Busca todos los Customer Ntfy
+Route::get('/customerNtfyCompany/{company}','App\Http\Controllers\CustomerNtfyController@indexCompany'); //Busca todos los Customer Ntfy de una compania
+Route::get('/customerNtfy/{id}','App\Http\Controllers\CustomerNtfyController@show'); //Busca un Customer Ntfy
+Route::post('/customerNtfy','App\Http\Controllers\CustomerNtfyController@store'); //Crea un nuevo Customer Ntfy
+Route::put('/customerNtfy/{id}','App\Http\Controllers\CustomerNtfyController@update'); //Actualiza los datos de un Customer Ntfy
+Route::delete('/customerNtfy/{id}','App\Http\Controllers\CustomerNtfyController@destroy'); //Elimina un Customer Ntfy
+
+//Customer shipper
+Route::get('/customersShipper','App\Http\Controllers\CustomerShipperController@index'); //Busca todos los Customer Shipper
+Route::get('/customerShipperCompany/{company}','App\Http\Controllers\CustomerShipperController@indexCompany'); //Busca todos los Customer Shipper de una compania
+Route::get('/customerShipper/{id}','App\Http\Controllers\CustomerShipperController@show'); //Busca un Customer Shipper de una compania
+Route::post('/customerShipper','App\Http\Controllers\CustomerShipperController@store'); //Crea un nuevo Customer Shipper
+Route::put('/customerShipper/{id}','App\Http\Controllers\CustomerShipperController@update'); //Actualiza los datos de un Customer Shipper
+Route::delete('/customerShipper/{id}','App\Http\Controllers\CustomerShipperController@destroy'); //Elimina un Customer Shipper
