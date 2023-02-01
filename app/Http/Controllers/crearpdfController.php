@@ -27,9 +27,9 @@ class crearpdfController extends Controller
         // revisar si no está generado el Instructivo.
         $conn = mysqli_connect(
             '31.170.161.22',
-            'u101685278_tcargocomex',
-            'Pachiman9102$',
-            'u101685278_tcargocomex'
+            'u101685278_ttlgroup',
+            'Pachiman9102',
+            'u101685278_ttlgroup'
         );
 
         $query = "SELECT asign.cntr_number, asign.booking, asign.file_instruction, transporte.contacto_logistica_celular FROM asign INNER JOIN transporte ON transporte.razon_social = asign.transport WHERE asign.cntr_number = '$cntr_number'";
@@ -50,13 +50,6 @@ class crearpdfController extends Controller
 
         } else {
             
-            echo 'no hay instrucción para enviar';
-        }
-
-
-        if ($file == null) {
-            // sino está generado el Instrtructivo lo creamos. 
-
                 $query_file = "SELECT DISTINCT asign.id, asign.transport, asign.transport_agent, asign.observation_load, asign.agent_port, carga.custom_place, carga.load_date, carga.booking, carga.shipper, carga.commodity, carga.load_place, carga.unload_place, carga.cut_off_fis, carga.oceans_line, carga.vessel, carga.voyage, carga.final_point, carga.custom_agent, carga.ref_customer, cntr.cntr_number, cntr.cntr_seal, cntr.cntr_type, cntr.net_weight, cntr.retiro_place, cntr.out_usd, cntr.modo_pago_out, cntr.plazo_de_pago_out, customer_load_place.link_maps, customer_load_place.address, customer_load_place.city FROM carga INNER JOIN cntr INNER JOIN asign INNER JOIN customer_load_place ON carga.booking = cntr.booking AND cntr.cntr_number = asign.cntr_number AND customer_load_place.description = carga.load_place WHERE cntr.cntr_number = '$cntr_number'";                
                 $result_file = mysqli_query($conn, $query_file);
                 
@@ -93,61 +86,49 @@ class crearpdfController extends Controller
                         'load_date' => $row['load_date'],
                         'link_maps' => $row['link_maps'],
                         'address' => $row['address'],
-                        'city' => $row['city'],
-
-                        /* 'titulo' => 'Styde.net',
-                    'hoy' => Carbon::now()->format('d/m/Y'),
-                    'poliza' => $certificado->id,
-                    'tomador' => $certificado->nombre,
-                    'rut' => $certificado->doc_numero,
-                    'domicilio' => $certificado->domicilio,
-                    'localidad' => $certificado->localidad,
-                    'pais' => $certificado->pais,
-                    'fecha_inicio' => $certificado->fecha_emision,
-                    'fecha_fin' =>  $certificado->fecha_final , 
-                    'asegurados' => Array($asegurados) */
+                        'city' => $row['city']
 
                     ];
 
                     // Logica de Creado de Carpera: 
 
 
-                    if (!file_exists('instructivos/' . $booking)) {
+                    if (!file_exists('instructivos/' . $row['booking'])) {
 
                         /* Si no Existe la Carperta Del booking */
 
-                        mkdir('instructivos/' . $booking, 0777, true);
+                        mkdir('instructivos/' . $row['booking'], 0777, true);
 
                         /* Si existe la Carpeta del Contenedor dentro de la Carpeta del Booking la Asignamos*/
-                        if (file_exists('instructivos/' . $booking . '/' . $cntr_number)) {
+                        if (file_exists('instructivos/' . $row['booking'] . '/' . $cntr_number)) {
 
-                            $folder = 'instructivos/' . $booking . '/' . $cntr_number . '/';
+                            $folder = 'instructivos/' . $row['booking'] . '/' . $cntr_number . '/';
                         } else {
 
                             /* Si no existe la Carpeta del Contenedor dentro de la Carpeta del Booking la creamos y  la Asignamos*/
 
 
-                            mkdir('instructivos/' . $booking . '/' . $cntr_number, 0777, true);
-                            $folder = 'instructivos/' . $booking . '/' . $cntr_number . '/';
+                            mkdir('instructivos/' . $row['booking']. '/' . $cntr_number, 0777, true);
+                            $folder = 'instructivos/' . $row['booking'] . '/' . $cntr_number . '/';
                         }
                     } else {
 
                         /* si Ya existe la Carpeta Booking */
 
-                        if (file_exists('instructivos/' . $booking . '/' . $cntr_number)) {
+                        if (file_exists('instructivos/' . $row['booking']. '/' . $cntr_number)) {
                             /* y existe la carpeta de CNTR la asignamos */
 
-                            $folder = 'instructivos/' . $booking . '/' . $cntr_number . '/';
+                            $folder = 'instructivos/' . $row['booking'] . '/' . $cntr_number . '/';
                         } else {
 
                             /* y si no existe la carpeta de CNTR la creamos y la asignamos */
 
-                            mkdir('instructivos/' . $booking . '/' . $cntr_number, 0777, true);
-                            $folder = 'instructivos/' . $booking . '/' . $cntr_number . '/';
+                            mkdir('instructivos/' . $row['booking']. '/' . $cntr_number, 0777, true);
+                            $folder = 'instructivos/' . $row['booking'] . '/' . $cntr_number . '/';
                         }
                     }
 
-                    $file_name = 'instructivo_' . $booking . '_' . $cntr_number . '.pdf';
+                    $file_name = 'instructivo_' .$row['booking']. '_' . $cntr_number . '.pdf';
 
                     // Ya sabemos que esta creada (o la creamos) entonces creamos variables para usar durante todo el proceso.
 
@@ -164,8 +145,8 @@ class crearpdfController extends Controller
                     $result_upload_file = mysqli_query($conn, $query_upload_file);
 
                     return $pdf->download($file_name);
-                }
-            }
+        }
+    }
         
     }
     public function cargaPorMail( $cntr )

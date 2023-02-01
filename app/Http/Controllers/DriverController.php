@@ -54,6 +54,7 @@ class DriverController extends Controller
     {
         $idTranport = DB::table('transporte')->where('id','=',$transporte)->get('razon_social');
         $id = $idTranport[0]->razon_social;
+
         /* Hay que recibir el id del Transporte */
         $drivers = DB::table('choferes')->where('transporte','=',$id)->get(); 
         return $drivers;

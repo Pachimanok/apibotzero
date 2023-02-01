@@ -156,7 +156,7 @@
                                                                 style="padding-top:30px;width:100%;padding-right:0px;padding-left:0px;padding-bottom:25px;">
                                                                 <div style="line-height:10px"><img alt="Image"
                                                                         class="fullMobileWidth big"
-                                                                        src="https://botzero.ar/public/image/server.svg"
+                                                                        src="https://apittl.botzero.ar/public/image/server.svg"
                                                                         style="display: block; height: auto; border: 0; width: 240px; max-width: 100%;margin: auto;"
                                                                         title="Image" width="195" /></div>
                                                             </td>

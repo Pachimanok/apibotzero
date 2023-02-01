@@ -14,7 +14,7 @@
     <div class="container">
         <div class="col-sm-10 mx-auto">
             <div class="card mb-3 mt-5">
-                <img src="https://botzero.ar/public/image/server.svg" class="card-img-top p-5" alt="...">
+                <img src="https://apittl.botzero.ar/public/image/server.svg" class="card-img-top p-5" alt="...">
                 <div class="card-body">
                     <h1 class="card-title text-center text-dark">Solicitud de Seguro de Carga</h1>
                     <p class="card-text text-center text-secondary">Completar los datos del siguiente formulario para

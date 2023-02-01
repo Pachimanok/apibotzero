@@ -78,7 +78,6 @@ class emailController extends Controller
                 'date' => $date
             ];
 
-
             $qempresa = DB::table('carga')->select('empresa')->where('booking', '=', $booking)->get();
             $empresa = $qempresa[0]->empresa;
             $qmail = DB::table('empresas')->where('razon_social', '=', $empresa)->select('mail_logistic')->get();
@@ -109,6 +108,7 @@ class emailController extends Controller
 
             Mail::to($mail)->send(new IngresadoStacking($datos));
             return 'ok';
+            
         } else {
 
 
