@@ -27,9 +27,9 @@ class crearpdfController extends Controller
         // revisar si no está generado el Instructivo.
         $conn = mysqli_connect(
             '31.170.161.22',
-            'u101685278_tcargocomex',
-            'Pachiman9102$',
-            'u101685278_tcargocomex'
+            'u101685278_ttlgroup',
+            'Pachiman9102',
+            'u101685278_ttlgroup'
         );
 
         $query = "SELECT asign.cntr_number, asign.booking, asign.file_instruction, transporte.contacto_logistica_celular FROM asign INNER JOIN transporte ON transporte.razon_social = asign.transport WHERE asign.cntr_number = '$cntr_number'";
@@ -175,9 +175,9 @@ class crearpdfController extends Controller
         // revisar si no está generado el Instructivo.
         $conn = mysqli_connect(
             '31.170.161.22',
-            'u101685278_tcargocomex',
-            'Pachiman9102$',
-            'u101685278_tcargocomex'
+            'u101685278_ttlgroup',
+            'Pachiman9102',
+            'u101685278_ttlgroup'
         );
 
         $query = DB::table('asign')
@@ -350,12 +350,12 @@ class crearpdfController extends Controller
 
         $conn = mysqli_connect(
             '31.170.161.22',
-            'u101685278_tcargocomex',
-            'Pachiman9102$',
-            'u101685278_tcargocomex'
+            'u101685278_ttlgroup',
+            'Pachiman9102',
+            'u101685278_ttlgroup'
         );
 
-        $query_file = "SELECT carga.booking, carga.cliente, carga.vessel, carga.voyage, carga.unload_place, carga.final_point, carga.commodity, cntr.retiro_place, carga.oceans_line, cntr.cntr_type FROM carga INNER JOIN cntr ON carga.booking = cntr.booking WHERE cntr.id_cntr = '$id_cntr'";
+        $query_file = "SELECT carga.booking, carga.trader, carga.vessel, carga.voyage, carga.unload_place, carga.final_point, carga.commodity, cntr.retiro_place, carga.oceans_line, cntr.cntr_type FROM carga INNER JOIN cntr ON carga.booking = cntr.booking WHERE cntr.id_cntr = '$id_cntr'";
         $result_file = mysqli_query($conn, $query_file);
 
         if (mysqli_num_rows($result_file) == 1) {
@@ -373,7 +373,7 @@ class crearpdfController extends Controller
                 'final_point' => $row['final_point'],
                 'cntr_type' => $row['cntr_type'],
                 'retiro_place' => $row['retiro_place'],
-                'cliente' => $row['cliente']
+                'cliente' => $row['trader']
                 /* 'titulo' => 'Styde.net',
                 'hoy' => Carbon::now()->format('d/m/Y'),
                 'poliza' => $certificado->id,
